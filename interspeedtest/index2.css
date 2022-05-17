@@ -1,0 +1,69 @@
+html,body{
+    border:none; padding:0; margin:0;
+    background:#FFFFFF;
+    color:#000000;
+    
+}
+html{
+    background-color: #bcbcbc;
+    font-family: "Segoe UI","Roboto",sans-serif;
+    background-image: url("bg01-01.jpg");
+    height: 100%;
+    background-repeat: no-repeat;
+    background-color: rgb(43,62,80);
+    font-family: Roboto;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    background-size: cover;
+    background-position: center center;
+}
+body{
+    text-align:center;
+    font-family:"Roboto",sans-serif;
+    background-color:#ececec;
+    box-sizing:border-box;
+    width:70%;
+    height:40%;
+    max-width:50em;
+    margin:5em auto;
+    box-shadow:0 1em 6em #00000080;
+    padding:1em 1em 1em 1em;
+    border-radius:0.4em;
+}
+h1{
+    color:#020202;
+}
+button {
+	border-radius: 10px;
+	border: 1px solid #a64bb8;
+	background-color: #a64bb8;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+button:active {
+	transform: scale(0.8);
+}
+
+button:focus {
+	outline: none;
+}
+
+button.ghost {
+	background-color: transparent;
+	border-color: #FFFFFF;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
