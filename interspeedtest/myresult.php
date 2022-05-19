@@ -72,6 +72,7 @@ if(!isset($_SESSION['sUserid'])){
             <tr>
                 <th>Timp stamp</th>
                 <th>IP</th>
+                <th>MAC</th>
                 <th>AP Name</th>
                 <th>Download</th>
                 <th>Upload</th>
@@ -89,13 +90,13 @@ if(!isset($_SESSION['sUserid'])){
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT ip, timestamp, dl, ul, ping, jitter, apname FROM speedtest_users Where userid = '$userid'";
+        $sql = "SELECT ip, timestamp, mac, dl, ul, ping, jitter, apname FROM speedtest_users Where userid = '$userid'";
         $result = $conn->query($sql);
 
         if ($result !== false && $result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . $row["timestamp"]. "</td><td>" . $row["ip"]. "</td><td>" . $row["apname"]. "</td><td>" . $row["dl"]. "</td><td>" . $row["ul"]. "</td><td>" . $row["ping"]. "</td><td>" . $row["jitter"]. "</td></tr>"; 
+            echo "<tr><td>" . $row["timestamp"]. "</td><td>" . $row["ip"]. "</td><td>" . $row["mac"]. "</td><td>" . $row["apname"]. "</td><td>" . $row["dl"]. "</td><td>" . $row["ul"]. "</td><td>" . $row["ping"]. "</td><td>" . $row["jitter"]. "</td></tr>"; 
         }
         } else {
             echo "0 results";

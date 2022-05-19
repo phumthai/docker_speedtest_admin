@@ -59,9 +59,9 @@ $subnet = checksource($ip);
 require 'checkAP.php';
 $getap = checkap($ip);
 $apname = $getap[0];
-$macaddr = $getap[1];
+$mac = $getap[1];
 
-$id = insertSpeedtestUser($ip, $ispinfo, $extra, $ua, $lang, $dl, $ul, $ping, $jitter, $log, $userid, $subnet, $apname);
+$id = insertSpeedtestUser($ip, $ispinfo, $extra, $ua, $lang, $dl, $ul, $ping, $jitter, $log, $userid, $subnet, $apname, $mac);
 if (false === $id) {
     exit(1);
 }

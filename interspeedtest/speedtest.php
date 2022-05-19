@@ -62,8 +62,9 @@ if(!isset($_SESSION['sUserid'])){
 					$ip = $_SERVER['REMOTE_ADDR'];
 				}
 				require __DIR__ . "/results/checkAP2.php";
-				$apname = checkAP2($ip);
-				echo "<p>$apname</p>";
+				$data = checkAP2($ip);
+				echo "<p>$data[1]</p>"; // mac
+				echo "<p>$data[0]</p>"; // ap name
 			?>
 		</div>
 		<div id="shareArea" style="display:none"></div>
@@ -74,6 +75,7 @@ if(!isset($_SESSION['sUserid'])){
 			$user = $userinfo->getUserInfo($accessToken);
 			$userid = $user->cmuitaccount;
 			echo "<p>$userid</p>";
+			date_default_timezone_set("Asia/Bangkok");
 			$time = date("Y-m-d H:i:s");
 			echo "<p>$time</p>";
 			echo "<a href=\"myresult.php\" target=\"_blank\">Test history</a>";
@@ -87,6 +89,7 @@ if(!isset($_SESSION['sUserid'])){
         At the end of the test, the following data is collected and stored:
         <ul>
 			<li>IP address</li>
+			<li>MAC address</li>
             <li>Time of testing</li>
             <li>Test results (download and upload speed, ping and jitter)</li>
         </ul>
