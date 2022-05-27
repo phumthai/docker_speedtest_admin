@@ -67,3 +67,15 @@ button.ghost {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+.btn {
+    padding: 10px 60px;
+    background: #fff;
+    color: #000000;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 500;
+    border-radius: 30px;
+}
