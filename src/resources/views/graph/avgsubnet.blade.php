@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Speedtest table</title>
+        <title>Speedtest Average by Subnet</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <link href="{!! url('assets/css/app.css') !!}" rel="stylesheet">
         <link href="{!! url('assets/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
@@ -11,7 +11,7 @@
     <br />
     <div class="container">
     @auth
-        <h3 align="center">Speedtest table</h3><br />
+        <h3 align="center">Average by Subnet</h3><br />
         <div class="row">
             <div class="col-md-9">
 
@@ -26,19 +26,15 @@
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th class="sorting" data-sorting_type="asc" data-column_name="timestamp" style="cursor: pointer">Timestamp </th>
-                        <th class="sorting" data-sorting_type="asc" data-column_name="ip" style="cursor: pointer">IP </th>
+                        <th class="sorting" data-sorting_type="asc" data-column_name="subnet" style="cursor: pointer">Subnet </th>
                         <th>Download</th>
                         <th>Upload</th>
                         <th>Ping</th>
                         <th>Jitter</th>
-                        <th class="sorting" data-sorting_type="asc" data-column_name="userid" style="cursor: pointer">User </th>
-                        <th class="sorting" data-sorting_type="asc" data-column_name="subnet" style="cursor: pointer">Subnet </th>
-                        <th class="sorting" data-sorting_type="asc" data-column_name="apname" style="cursor: pointer">AP Name </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @include('graph.pagination_data')
+                    @include('graph.avgsubnet_data')
                 </tbody>
             </table>
             <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
@@ -60,7 +56,7 @@
         function fetch_data(page, sort_type, sort_by, query)
         {
             $.ajax({
-            url:"/pagination/fetch_data?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
+            url:"/avgsubnet/fetch_data?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
             success:function(data)
             {
                 $('tbody').html('');

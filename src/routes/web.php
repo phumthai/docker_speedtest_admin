@@ -23,6 +23,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('/totalchart','TotalChartController@index')->name('total.index');
     Route::get('/pagination', 'PaginationController@index')->name('pagination.index');
     Route::get('/pagination/fetch_data', 'PaginationController@fetch_data')->name('pagination.fetchData');
+    Route::get('/avgap', 'AvgapController@index')->name('avgap.index');
+    Route::get('/avgap/fetch_data', 'AvgapController@fetch_data')->name('avgap.fetchData');
+    Route::get('/avgsubnet', 'AvgsubnetController@index')->name('avgsubnet.index');
+    Route::get('/avgsubnet/fetch_data', 'AvgsubnetController@fetch_data')->name('avgsubnet.fetchData');
 
     Route::group(['middleware' => ['guest']], function() {
         /**
