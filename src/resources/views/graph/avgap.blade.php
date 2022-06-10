@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input type="text" name="serach" id="serach" class="form-control" />
+                    <input type="text" name="serach" id="serach" class="form-control" placeholder="search" />
                 </div>
             </div>
         </div>
@@ -27,10 +27,11 @@
                 <thead>
                     <tr>
                         <th class="sorting" data-sorting_type="asc" data-column_name="apname" style="cursor: pointer">AP Name </th>
-                        <th>Download</th>
-                        <th>Upload</th>
-                        <th>Ping</th>
-                        <th>Jitter</th>
+                        <th>Download (Mbps)</th>
+                        <th>Upload (Mbps)</th>
+                        <th>Ping (ms)</th>
+                        <th>Jitter (ms)</th>
+                        <th>Count</th>
                     </tr>
                 </thead>
                 <tbody>

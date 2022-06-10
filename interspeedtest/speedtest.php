@@ -61,10 +61,10 @@ if(!isset($_SESSION['sUserid'])){
 				} else {
 					$ip = $_SERVER['REMOTE_ADDR'];
 				}
-				require __DIR__ . "/results/checkAP2.php";
-				$data = checkAP2($ip);
-				echo "<p>$data[1]</p>"; // mac
-				echo "<p>$data[0]</p>"; // ap name
+				// require __DIR__ . "/results/checkAP2.php";
+				// $data = checkAP2($ip);
+				// echo "<p>$data[1]</p>"; // mac
+				// echo "<p>$data[0]</p>"; // ap name
 			?>
 		</div>
 		<div id="shareArea" style="display:none"></div>
@@ -82,7 +82,7 @@ if(!isset($_SESSION['sUserid'])){
 		?>
 	</div>
 </div>
-<div id="privacyPolicy" style="display:none">
+<!-- <div id="privacyPolicy" style="display:none">
     <h2>Privacy Policy</h2>
     <h4>What data we collect</h4>
     <p>
@@ -111,7 +111,7 @@ if(!isset($_SESSION['sUserid'])){
         <a class="privacy" href="#" onclick="I('privacyPolicy').style.display='none'">Close</a>
     </div>
     <br/>
-</div>
+</div> -->
 <script type="text/javascript">setTimeout(function(){initUI()},100);</script>
 </body>
 </html>

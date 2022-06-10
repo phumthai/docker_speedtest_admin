@@ -9,7 +9,7 @@ class AvgsubnetController extends Controller
 {
     function index()
     {
-        $data = DB::table('speedtest_users')->select(DB::raw('subnet, FORMAT(AVG(dl),2) as dl,FORMAT(AVG(ul),2) as ul,FORMAT(AVG(ping),2) as ping,FORMAT(AVG(jitter),2) as jitter'))->where('apname','!=','undefine')->groupBy('subnet')->paginate(1000);
+        $data = DB::table('speedtest_users')->select(DB::raw('subnet, FORMAT(AVG(dl),2) as dl,FORMAT(AVG(ul),2) as ul,FORMAT(AVG(ping),2) as ping,FORMAT(AVG(jitter),2) as jitter, count(*) as co'))->where('apname','!=','undefine')->groupBy('subnet')->paginate(1000);
         return view('graph.avgsubnet', compact('data'));
     }
 
@@ -22,7 +22,7 @@ class AvgsubnetController extends Controller
             $query = $request->get('query');
             $query = str_replace(" ", "%", $query);
             $data = DB::table('speedtest_users')
-                ->select(DB::raw('subnet, FORMAT(AVG(dl),2) as dl,FORMAT(AVG(ul),2) as ul,FORMAT(AVG(ping),2) as ping,FORMAT(AVG(jitter),2) as jitter'))
+                ->select(DB::raw('subnet, FORMAT(AVG(dl),2) as dl,FORMAT(AVG(ul),2) as ul,FORMAT(AVG(ping),2) as ping,FORMAT(AVG(jitter),2) as jitter, count(*) as co'))
                 ->where('apname','!=','undefine')
                 ->where('subnet', 'like', '%'.$query.'%')
                 ->groupBy('subnet')

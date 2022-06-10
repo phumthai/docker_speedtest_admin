@@ -6,6 +6,7 @@
     <td>{{ $row->ul}}</td>
     <td>{{ $row->ping}}</td>
     <td>{{ $row->jitter}}</td>
+    <td>{{ $row->co}}</td>
 </tr>
 @endforeach
 <tr>
