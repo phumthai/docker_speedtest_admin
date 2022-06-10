@@ -1,8 +1,8 @@
 <?php
 session_start();
 // provide your application id,secret and redirect uri
-$appId = 'J0PqFP3FuYPBrnbWaxkPBSQFGfrDm7DyJs1jFaK3';
-$appSecret = 'jaFNuwV88V4JCSS3mgTzyzuxvr29x3q9YsEAkbnm';
+$appId = '';
+$appSecret = '';
 //$callbackUri[5] = 'http://localhost/interspeedtest/callback.php';
 $callbackUri[7] = 'http://localhost:8080/callback.php';
 $scope = 'cmuitaccount.basicinfo';
