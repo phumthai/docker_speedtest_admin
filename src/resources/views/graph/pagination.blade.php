@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <input type="text" name="serach" id="serach" class="form-control" />
+                    <input type="text" name="serach" id="serach" class="form-control" placeholder="search"/>
                 </div>
             </div>
         </div>
@@ -26,6 +26,7 @@
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
+                        <th>TestCode</th>
                         <th class="sorting" data-sorting_type="asc" data-column_name="timestamp" style="cursor: pointer">Timestamp </th>
                         <th class="sorting" data-sorting_type="asc" data-column_name="ip" style="cursor: pointer">IP </th>
                         <th>Download</th>

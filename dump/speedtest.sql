@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `speedtest_users` (
     `userid` text NULL,
     `subnet` text NULL,
     `apname` text,
-    `mac` text
+    `mac` text,
+    `testcode` text
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

@@ -60,8 +60,9 @@ require 'checkAP.php';
 $getap = checkap($ip);
 $apname = $getap[0];
 $mac = $getap[1];
+$testcode = $_SESSION['testCode'];
 
-$id = insertSpeedtestUser($ip, $ispinfo, $extra, $ua, $lang, $dl, $ul, $ping, $jitter, $log, $userid, $subnet, $apname, $mac);
+$id = insertSpeedtestUser($ip, $ispinfo, $extra, $ua, $lang, $dl, $ul, $ping, $jitter, $log, $userid, $subnet, $apname, $mac, $testcode);
 if (false === $id) {
     exit(1);
 }

@@ -70,6 +70,7 @@ function getPdo()
                 `userid` text NULL,
                 `subnet` text NULL,
                 `mac`   text NULL,
+                `testcode`      text NULL,
                 )
                 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
             ');
@@ -115,7 +116,7 @@ function isObfuscationEnabled()
 /**
  * @return string|false returns the id of the inserted column or false on error
  */
-function insertSpeedtestUser($ip, $ispinfo, $extra, $ua, $lang, $dl, $ul, $ping, $jitter, $log, $userid, $subnet, $apname, $mac)
+function insertSpeedtestUser($ip, $ispinfo, $extra, $ua, $lang, $dl, $ul, $ping, $jitter, $log, $userid, $subnet, $apname, $mac, $testcode)
 {
     $pdo = getPdo();
     if (!($pdo instanceof PDO)) {
@@ -125,11 +126,11 @@ function insertSpeedtestUser($ip, $ispinfo, $extra, $ua, $lang, $dl, $ul, $ping,
     try {
         $stmt = $pdo->prepare(
             'INSERT INTO speedtest_users
-        (ip,ispinfo,extra,ua,lang,dl,ul,ping,jitter,log,userid,subnet,apname,mac)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
+        (ip,ispinfo,extra,ua,lang,dl,ul,ping,jitter,log,userid,subnet,apname,mac,$testcode)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
         );
         $stmt->execute([
-            $ip, $ispinfo, $extra, $ua, $lang, $dl, $ul, $ping, $jitter, $log, $userid, $subnet, $apname , $mac
+            $ip, $ispinfo, $extra, $ua, $lang, $dl, $ul, $ping, $jitter, $log, $userid, $subnet, $apname , $mac, $testcode
         ]);
         $id = $pdo->lastInsertId();
     } catch (Exception $e) {
@@ -166,7 +167,7 @@ function getSpeedtestUserById($id)
     try {
         $stmt = $pdo->prepare(
             'SELECT
-            id, timestamp, ip, ispinfo, ua, lang, dl, ul, ping, jitter, log, extra, userid, subnet, apname, mac
+            id, timestamp, ip, ispinfo, ua, lang, dl, ul, ping, jitter, log, extra, userid, subnet, apname, mac, testcode
             FROM speedtest_users
             WHERE id = :id'
         );
@@ -202,7 +203,7 @@ function getLatestSpeedtestUsers()
     try {
         $stmt = $pdo->query(
             'SELECT
-            id, timestamp, ip, ispinfo, ua, lang, dl, ul, ping, jitter, log, extra, userid, subnet, apname, mac
+            id, timestamp, ip, ispinfo, ua, lang, dl, ul, ping, jitter, log, extra, userid, subnet, apname, mac, testcode
             FROM speedtest_users
             ORDER BY timestamp DESC
             LIMIT 100'

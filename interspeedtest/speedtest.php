@@ -19,7 +19,7 @@ if(!isset($_SESSION['sUserid'])){
 <body>
 <h1>Internet Speedtest</h1>
 <div id="testWrapper">
-	<div id="startStopBtn" onclick="startStop()"></div><br/>
+	<div id="startStopBtn" onclick="startStop(); testCode();"></div><br/>
 	<a class="privacy" href="#" onclick="I('privacyPolicy').style.display=''">Privacy</a>
 	<div id="test">
 		<div class="testGroup">
@@ -61,12 +61,13 @@ if(!isset($_SESSION['sUserid'])){
 				} else {
 					$ip = $_SERVER['REMOTE_ADDR'];
 				}
-				// require __DIR__ . "/results/checkAP2.php";
-				// $data = checkAP2($ip);
+				require __DIR__ . "/results/checkAP2.php";
+				$data = checkAP2($ip);
 				// echo "<p>$data[1]</p>"; // mac
 				// echo "<p>$data[0]</p>"; // ap name
 			?>
 		</div>
+		<p id="testcode"></p>
 		<div id="shareArea" style="display:none"></div>
 		<?php
 			$accessToken = $_SESSION['accessToken'];
@@ -74,11 +75,26 @@ if(!isset($_SESSION['sUserid'])){
 			$userinfo = new UserInfo();
 			$user = $userinfo->getUserInfo($accessToken);
 			$userid = $user->cmuitaccount;
-			echo "<p>$userid</p>";
+			// echo "<p>$userid</p>";
 			date_default_timezone_set("Asia/Bangkok");
 			$time = date("Y-m-d H:i:s");
 			echo "<p>$time</p>";
 			echo "<a href=\"myresult.php\" target=\"_blank\">Test history</a>";
+		?>
+		<?php  
+			function generateRandomString() {
+				$length = 8;
+				$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+				$charactersLength = strlen($characters);
+				$randomString = '';
+				for ($i = 0; $i < $length; $i++) {
+					$randomString .= $characters[rand(0, $charactersLength - 1)];
+				}
+				$_SESSION['testCode'] = $randomString;
+				return $randomString;
+			}
+			$testcode = generateRandomString();
+			$_SESSION['testCode'] = $testcode;
 		?>
 	</div>
 </div>
@@ -113,5 +129,11 @@ if(!isset($_SESSION['sUserid'])){
     <br/>
 </div> -->
 <script type="text/javascript">setTimeout(function(){initUI()},100);</script>
+<script type="text/javascript">
+	function testCode() {
+		let x = "<?php echo"$testcode"?>";
+        document.getElementById("testcode").innerHTML = x;
+	}
+</script>
 </body>
 </html>
