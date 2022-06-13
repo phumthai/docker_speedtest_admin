@@ -96,7 +96,7 @@ if(!isset($_SESSION['sUserid'])){
         if ($result !== false && $result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . $row["testcode"]. "</td><td>" . $row["timestamp"]. "</td><td>" . $row["ip"]. "</td><td>" . $row["mac"]. "</td><td>" . $row["apname"]. "</td><td>" . $row["dl"]. "</td><td>" . $row["ul"]. "</td><td>" . $row["ping"]. "</td><td>" . $row["jitter"]. "</td><td>" . $row["jitter"]. "</td></tr>"; 
+            echo "<tr><td>" . $row["testcode"]. "</td><td>" . $row["timestamp"]. "</td><td>" . $row["ip"]. "</td><td>" . $row["apname"]. "</td><td>" . $row["dl"]. "</td><td>" . $row["ul"]. "</td><td>" . $row["ping"]. "</td><td>" . $row["jitter"]. "</td></tr>"; 
         }
         } else {
             echo "0 results";
