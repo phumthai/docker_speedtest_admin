@@ -17,10 +17,14 @@ if(!isset($_SESSION['sUserid'])){
 <title>Internet Speedtest</title>
 </head>
 <body>
+<?php if($_SESSION['sUserid']=="phumthai.k@cmu.ac.th" ||$_SESSION['sUserid']=="thomhathai.j@cmu.ac.th" ||$_SESSION['sUserid']=="nititorn.p@cmu.ac.th" ||$_SESSION['sUserid']=="chairat.c@cmu.ac.th" ) :?>
+	<div style="position: relative;float:right;"><a href="http://localhost:8088" style="color:red;">Admin</a></div>
+<?php endif;?>
+
+
 <h1>Internet Speedtest</h1>
 <div id="testWrapper">
 	<div id="startStopBtn" onclick="startStop(); testCode();"></div><br/>
-	<a class="privacy" href="#" onclick="I('privacyPolicy').style.display=''">Privacy</a>
 	<div id="test">
 		<div class="testGroup">
 			<div class="testArea">
@@ -61,8 +65,8 @@ if(!isset($_SESSION['sUserid'])){
 				} else {
 					$ip = $_SERVER['REMOTE_ADDR'];
 				}
-				require __DIR__ . "/results/checkAP2.php";
-				$data = checkAP2($ip);
+				//require __DIR__ . "/results/checkAP2.php";
+				//$data = checkAP2($ip);
 				// echo "<p>$data[1]</p>"; // mac
 				// echo "<p>$data[0]</p>"; // ap name
 			?>
@@ -70,11 +74,11 @@ if(!isset($_SESSION['sUserid'])){
 		<p id="testcode"></p>
 		<div id="shareArea" style="display:none"></div>
 		<?php
-			$accessToken = $_SESSION['accessToken'];
-			require('userinfo.class.php');
-			$userinfo = new UserInfo();
-			$user = $userinfo->getUserInfo($accessToken);
-			$userid = $user->cmuitaccount;
+			// $accessToken = $_SESSION['accessToken'];
+			// require('userinfo.class.php');
+			// $userinfo = new UserInfo();
+			// $user = $userinfo->getUserInfo($accessToken);
+			// $userid = $user->cmuitaccount;
 			// echo "<p>$userid</p>";
 			date_default_timezone_set("Asia/Bangkok");
 			$time = date("Y-m-d H:i:s");
@@ -98,36 +102,6 @@ if(!isset($_SESSION['sUserid'])){
 		?>
 	</div>
 </div>
-<!-- <div id="privacyPolicy" style="display:none">
-    <h2>Privacy Policy</h2>
-    <h4>What data we collect</h4>
-    <p>
-        At the end of the test, the following data is collected and stored:
-        <ul>
-			<li>IP address</li>
-			<li>MAC address</li>
-            <li>Time of testing</li>
-            <li>Test results (download and upload speed, ping and jitter)</li>
-        </ul>
-    </p>
-    <h4>How we use the data</h4>
-    <p>
-        Data collected through this service is used to:
-        <ul>
-            <li>To improve the service offered to you (for instance, to detect problems on our side)</li>
-        </ul>
-        No personal information is disclosed to third parties.
-    </p>
-    <h4>Your consent</h4>
-    <p>
-        By starting the test, you consent to the terms of this privacy policy.
-    </p>
-    <br/><br/>
-    <div class="closePrivacyPolicy">
-        <a class="privacy" href="#" onclick="I('privacyPolicy').style.display='none'">Close</a>
-    </div>
-    <br/>
-</div> -->
 <script type="text/javascript">setTimeout(function(){initUI()},100);</script>
 <script type="text/javascript">
 	function testCode() {
