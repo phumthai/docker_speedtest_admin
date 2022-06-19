@@ -85,29 +85,35 @@ if(!isset($_SESSION['sUserid'])){
 			echo "<p>$time</p>";
 			echo "<a href=\"myresult.php\" target=\"_blank\">Test history</a>";
 		?>
-		<?php  
-			function generateRandomString() {
-				$length = 8;
-				$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-				$charactersLength = strlen($characters);
-				$randomString = '';
-				for ($i = 0; $i < $length; $i++) {
-					$randomString .= $characters[rand(0, $charactersLength - 1)];
-				}
-				$_SESSION['testCode'] = $randomString;
-				return $randomString;
-			}
-			$testcode = generateRandomString();
-			$_SESSION['testCode'] = $testcode;
-		?>
 	</div>
 </div>
 <script type="text/javascript">setTimeout(function(){initUI()},100);</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-	function testCode() {
-		let x = "<?php echo"$testcode"?>";
-        document.getElementById("testcode").innerHTML = x;
-	}
+	function makeid() {
+        let result           = '';
+        let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let charactersLength = characters.length;
+        for ( let i = 0; i < 8; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+        
+    $(document).ready(function(){
+		$("#startStopBtn").click(function(){
+			let name = makeid();
+			$.post("http://localhost:8080/testcode.php",
+				{
+					name: name
+				},
+				function(res,status){
+					let data = JSON.parse(res);
+					$("#testcode").html(data.message);
+				}
+			)
+		})
+    })
 </script>
 </body>
 </html>
