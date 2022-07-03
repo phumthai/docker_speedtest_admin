@@ -69,6 +69,7 @@ if(!isset($_SESSION['sUserid'])){
 				//$data = checkAP2($ip);
 				// echo "<p>$data[1]</p>"; // mac
 				// echo "<p>$data[0]</p>"; // ap name
+				// echo "<p>$data[2]</p>"; // ssid
 			?>
 		</div>
 		<p id="testcode"></p>
@@ -80,9 +81,9 @@ if(!isset($_SESSION['sUserid'])){
 			// $user = $userinfo->getUserInfo($accessToken);
 			// $userid = $user->cmuitaccount;
 			// echo "<p>$userid</p>";
-			date_default_timezone_set("Asia/Bangkok");
-			$time = date("Y-m-d H:i:s");
-			echo "<p>$time</p>";
+			// date_default_timezone_set("Asia/Bangkok");
+			// $time = date("Y-m-d H:i:s");
+			// echo "<p>$time</p>";
 			echo "<a href=\"myresult.php\" target=\"_blank\">Test history</a>";
 		?>
 	</div>
@@ -91,13 +92,9 @@ if(!isset($_SESSION['sUserid'])){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	function makeid() {
-        let result           = '';
-        let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        let charactersLength = characters.length;
-        for ( let i = 0; i < 8; i++ ) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
+		let tzoffset = (new Date()).getTimezoneOffset() * 60000;
+        let d = new Date(Date.now() - tzoffset).toISOString();
+        return d;
     }
         
     $(document).ready(function(){

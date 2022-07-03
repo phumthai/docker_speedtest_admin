@@ -56,13 +56,32 @@ if($ispinfo==null&&$extra==null&&$dl==null&&$ul==null&&$ping==null&&$jitter==nul
 require 'checkSource.php';
 $subnet = checksource($ip);
 
-require 'checkAP.php';
-$getap = checkap($ip);
-$apname = $getap[0];
-$mac = $getap[1];
-$testcode = $_SESSION['testcode'];
+// require 'checkAP2.php';
+// $getap = checkap2($ip);
+// $apname = $getap[0];
+// $mac = $getap[1];
+// $ssid = $getap[2];
+// $testcode = $_SESSION['testcode'];
+// $timestamp = $_SESSION['testdate'];
 
-$id = insertSpeedtestUser($ip, $ispinfo, $extra, $ua, $lang, $dl, $ul, $ping, $jitter, $log, $userid, $subnet, $apname, $mac, $testcode);
+// require 'checkutilize.php';
+// $getutilize = checkutilize($ip);
+// $utilize24 = $getutilize[0];
+// $utilize5 = $getutilize[1];
+// $clientnum24 = $getutilize[2];
+// $clientnum5 = $getutilize[3];
+
+$apname = "a";
+$mac = "a";
+$ssid = "a";
+$testcode = $_SESSION['testcode'];
+$timestamp = $_SESSION['testdate'];
+$utilize24 = "a";
+$utilize5 = "a";
+$clientnum24 = "a";
+$clientnum5 = "a";
+
+$id = insertSpeedtestUser($ip, $ispinfo, $extra, $ua, $lang, $dl, $ul, $ping, $jitter, $log, $userid, $subnet, $apname, $mac, $testcode, $ssid, $timestamp,$utilize24,$utilize5,$clientnum24,$clientnum5);
 if (false === $id) {
     exit(1);
 }

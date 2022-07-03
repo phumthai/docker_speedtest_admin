@@ -56,6 +56,18 @@ services:
       - ./config.env
     depends_on:
       - db
+
+  snmp:
+    build:
+      context: ./snmp
+      dockerfile: Dockerfile
+    container_name: snmp
+    restart: always
+    volumes:
+      - ./snmp:/app
+    depends_on:
+      - db
+
 volumes:
     persistent:
 

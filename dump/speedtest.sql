@@ -18,3 +18,13 @@ CREATE TABLE IF NOT EXISTS `speedtest_users` (
     `testcode` text
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS `snmp` (
+	`id` text,
+    `apname` text,
+    `utilize24` text,
+    `utilize5` text,
+    `clientnum24` text,
+    `clientnum5` text
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

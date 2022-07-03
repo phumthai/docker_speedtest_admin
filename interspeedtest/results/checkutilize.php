@@ -2,12 +2,15 @@
   if(!isset($_SESSION)){
     session_start();
   }
-  function checkap2($ip){
+  function checkutilize($ip){
+    require 'checkAP2.php';
+    $getap = checkap2($ip);
+    $apname = $getap[0];
+
     $servername = '';
     $username = '';
     $password = '';
     $dbname = '';
-    $userid = $_SESSION['sUserid'];
     
     $date = date('Ymd');
 
@@ -18,25 +21,21 @@
       die("Connection failed: " . $conn->connect_error);
     }
     
-    $sql = "SELECT * FROM  WHERE ip='$ip' AND user='$userid' ORDER BY `time` DESC LIMIT 1";
+    $sql = "SELECT * FROM snmp WHERE apname='$apname' ";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
       $data;
       while($row = $result->fetch_assoc()) {
         if($userid)
-        $data[] =  $row["apName"];
-        $data[] =  $row["mac"];
-        $data[] =  $row["ssid"];
-        $_SESSION['apname'] = $row["apName"];
+        $data[] =  $row["utilize24"];
+        $data[] =  $row["utilize5"];
+        $data[] =  $row["clientnum24"];
+        $data[] =  $row["clientnum5"];
       }
       return $data;
     } else {
-      return "No AP data";
+      return "No utilize data";
     }
     $conn->close();
-  }
-  function checktime(){
-    date_default_timezone_set("Asia/Bangkok");
-    return date("Y-m-d H:i:s");
   }
 ?>
