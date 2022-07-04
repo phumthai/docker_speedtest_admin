@@ -131,7 +131,7 @@ function insertSpeedtestUser($ip, $ispinfo, $extra, $ua, $lang, $dl, $ul, $ping,
     try {
         $stmt = $pdo->prepare(
             'INSERT INTO speedtest_users
-        (ip,ispinfo,extra,ua,lang,dl,ul,ping,jitter,log,userid,subnet,apname,mac,testcode,ssid,timestamp,utilize24,utilize5,clientnum24,clientnum5)
+        (ip,ispinfo,extra,ua,lang,dl,ul,ping,jitter,log,userid,subnet,apname,mac,testcode,ssid,timestampss,utilize24,utilize5,clientnum24,clientnum5)
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
         );
         $stmt->execute([

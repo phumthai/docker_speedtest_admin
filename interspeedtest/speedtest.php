@@ -65,11 +65,23 @@ if(!isset($_SESSION['sUserid'])){
 				} else {
 					$ip = $_SERVER['REMOTE_ADDR'];
 				}
-				//require __DIR__ . "/results/checkAP2.php";
-				//$data = checkAP2($ip);
+				//require __DIR__ . "/results/checkAPuse.php";
+				//$data = checkapuse($ip);
 				// echo "<p>$data[1]</p>"; // mac
 				// echo "<p>$data[0]</p>"; // ap name
 				// echo "<p>$data[2]</p>"; // ssid
+				require __DIR__ . "/results/checkutilize.php";
+				$utilize = checkutilize($ip);
+				if($utilize=='No data'){
+					// do someting
+				}
+				else if($ssid=='@JumboPlus5GHz'){
+					echo "<p>$utilize[3]</p>";
+					echo "<p>$utilize[5]</p>";
+				}else{
+					echo "<p>$utilize[2]</p>";
+					echo "<p>$utilize[4]</p>";
+				}
 			?>
 		</div>
 		<p id="testcode"></p>

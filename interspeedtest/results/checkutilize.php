@@ -34,7 +34,7 @@
       }
       return $data;
     } else {
-      return "No utilize data";
+      return "No data";
     }
     $conn->close();
   }

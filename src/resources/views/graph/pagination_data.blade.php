@@ -11,6 +11,7 @@
     <td>{{ $row->userid }}</td>
     <td>{{ $row->subnet }}</td>
     <td>{{ $row->apname}}</td>
+    <td>{{ $row->ssid}}</td>
 </tr>
 @endforeach
 <tr>

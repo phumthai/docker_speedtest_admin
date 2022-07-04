@@ -2,7 +2,7 @@
   if(!isset($_SESSION)){
     session_start();
   }
-  function checkap2($ip){
+  function checkapuse($ip){
     $servername = '';
     $username = '';
     $password = '';
@@ -28,6 +28,8 @@
         $data[] =  $row["mac"];
         $data[] =  $row["ssid"];
         $_SESSION['apname'] = $row["apName"];
+        $_SESSION['mac'] = $row["mac"];
+        $_SESSION['ssid'] = $row["ssid"];
       }
       return $data;
     } else {

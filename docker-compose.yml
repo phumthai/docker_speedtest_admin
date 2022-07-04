@@ -65,11 +65,13 @@ services:
     restart: always
     volumes:
       - ./snmp:/app
+      - sm_dependencies:/usr/src/app/node_modules
     depends_on:
       - db
 
 volumes:
     persistent:
+    sm_dependencies:
 
 
 

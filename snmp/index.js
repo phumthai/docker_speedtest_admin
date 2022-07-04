@@ -3,6 +3,10 @@ const { get } = require("http");
 var snmp = require ("net-snmp");
 var mysql = require('mysql');
 const community_key = process.env.community_key
+const MYSQL_HOST = process.env.MYSQL_HOST
+const MYSQL_USER = process.env.MYSQL_USER
+const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD
+const MYSQL_DATABASE = process.env.MYSQL_DATABASE
 
 var options = {
     port: 161,
@@ -162,7 +166,8 @@ async function firstE(){
 async function second(){
     for(let i=0;i<apname.length;i++){
         let collect = [];
-        collect.push(i+1);
+        let id = i.toString();
+        collect.push(id);
         collect.push(apname[i][1]);
         collect.push(aputilize[i*2][1]);
         collect.push(aputilize[(i*2)+1][1]);
@@ -170,28 +175,32 @@ async function second(){
         collect.push(clientnum[(i*2)+1][1]);
         data.push(collect);
     }
-    console.log(data[0])
 }
 
 
 async function insertsql(){
     try{
         var con = mysql.createConnection({
-            host: process.env.MYSQL_HOST,
-            user: process.env.MYSQL_USER,
-            password: process.env.MYSQL_PASSWORD,
-            database: process.env.MYSQL_DATABASE
+            host: MYSQL_HOST,
+            user: MYSQL_USER,
+            password: MYSQL_PASSWORD,
+            database: MYSQL_DATABASE
         });
       
         con.connect(function(err) {
             if (err) throw err;
             console.log("Connected!");
-            var sql = "DELETE FROM snmp; INSERT INTO snmp (id, apname, utilize24, utilize5, clientnum24, clientnum5) VALUES ?";
+            var sqld = "DELETE FROM snmp";
+            con.query(sqld, function (err, result) {
+                if (err) throw err;
+                    console.log("Number of records deleted: " + result.affectedRows);
+            });
+            var sql = "INSERT INTO snmp (id, apname, utilize24, utilize5, clientnum24, clientnum5) VALUES ?";
             var values = data;
             data = [];
             con.query(sql, [values], function (err, result) {
             if (err) throw err;
-            console.log("Number of records inserted: " + result.affectedRows);
+                console.log("Number of records inserted: " + result.affectedRows);
             });
             setTimeout(function(){
                 con.end();

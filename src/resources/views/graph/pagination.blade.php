@@ -36,6 +36,7 @@
                         <th class="sorting" data-sorting_type="asc" data-column_name="userid" style="cursor: pointer">User </th>
                         <th class="sorting" data-sorting_type="asc" data-column_name="subnet" style="cursor: pointer">Subnet </th>
                         <th class="sorting" data-sorting_type="asc" data-column_name="apname" style="cursor: pointer">AP Name </th>
+                        <th>SSID</th>
                     </tr>
                 </thead>
                 <tbody>
