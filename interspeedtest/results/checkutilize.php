@@ -2,15 +2,12 @@
   if(!isset($_SESSION)){
     session_start();
   }
-  function checkutilize($ip){
-    require 'checkAP2.php';
-    $getap = checkap2($ip);
-    $apname = $getap[0];
+  function checkutilize($ip,$apname){
 
-    $servername = '';
-    $username = '';
-    $password = '';
-    $dbname = '';
+    $servername = 'db';
+    $username = 'cnoc';
+    $password = '1234';
+    $dbname = 'speedtest';
     
     $date = date('Ymd');
 
@@ -26,7 +23,7 @@
     if ($result->num_rows > 0) {
       $data;
       while($row = $result->fetch_assoc()) {
-        if($userid)
+        if($apname)
         $data[] =  $row["utilize24"];
         $data[] =  $row["utilize5"];
         $data[] =  $row["clientnum24"];

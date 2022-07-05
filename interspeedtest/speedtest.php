@@ -24,7 +24,7 @@ if(!isset($_SESSION['sUserid'])){
 
 <h1>Internet Speedtest</h1>
 <div id="testWrapper">
-	<div id="startStopBtn" onclick="startStop(); testCode();"></div><br/>
+	<div id="startStopBtn" onclick="startStop(); showData()"></div><br/>
 	<div id="test">
 		<div class="testGroup">
 			<div class="testArea">
@@ -65,25 +65,55 @@ if(!isset($_SESSION['sUserid'])){
 				} else {
 					$ip = $_SERVER['REMOTE_ADDR'];
 				}
-				//require __DIR__ . "/results/checkAPuse.php";
-				//$data = checkapuse($ip);
+				// require __DIR__ . "/results/checkAPuse.php";
+				// $data = checkapuse($ip);
 				// echo "<p>$data[1]</p>"; // mac
 				// echo "<p>$data[0]</p>"; // ap name
 				// echo "<p>$data[2]</p>"; // ssid
-				require __DIR__ . "/results/checkutilize.php";
-				$utilize = checkutilize($ip);
-				if($utilize=='No data'){
-					// do someting
-				}
-				else if($ssid=='@JumboPlus5GHz'){
-					echo "<p>$utilize[3]</p>";
-					echo "<p>$utilize[5]</p>";
-				}else{
-					echo "<p>$utilize[2]</p>";
-					echo "<p>$utilize[4]</p>";
-				}
 			?>
 		</div>
+
+		<div id="dataArea" style="display:none">
+			<?php
+				
+				require __DIR__ . "/results/checkAPuse.php";
+				$data = checkapuse($ip);
+				if($data!='No data'){
+					$_SESSION['apname'] = $data[0];
+					$_SESSION['mac'] = $data[1];
+					$_SESSION['ssid'] = $data[2];
+					// echo "<p>$data[1]</p>"; // mac
+					echo "<p>$data[0]</p>"; // ap name
+					echo "<p>$data[2]</p>"; // ssid
+					
+				}else{
+					$_SESSION['apname'] = 'No data';
+					$_SESSION['mac'] = 'No data';
+					$_SESSION['ssid'] = 'No data';
+				}
+				
+				require __DIR__ . "/results/checkutilize.php";
+				$utilize = checkutilize($ip,$apname);
+				if($utilize!='No data'){
+					$_SESSION['utilize24'] = $utilize[0];
+					$_SESSION['utilize5'] = $utilize[1];
+					$_SESSION['clientnum24'] = $utilize[2];
+					$_SESSION['clientnum5'] = $utilize[3];
+					if($ssid=='@JumboPlus5GHz'){
+						echo "<p>Utilize: ".$utilize[1]."</p>";
+						echo "<p>Client count: ".$utilize[3]."</p>";
+					}else{
+						echo "<p>Utilize: ".$utilize[0]."</p>";
+						echo "<p>Client count: ".$utilize[2]."</p>";
+					}
+				}else{
+					$_SESSION['utilize24'] = 'No data';
+					$_SESSION['utilize5'] ='No data';
+					$_SESSION['clientnum24'] ='No data';
+					$_SESSION['clientnum5'] ='No data';
+				}
+			?>
+        </div>
 		<p id="testcode"></p>
 		<div id="shareArea" style="display:none"></div>
 		<?php
@@ -107,6 +137,15 @@ if(!isset($_SESSION['sUserid'])){
 		let tzoffset = (new Date()).getTimezoneOffset() * 60000;
         let d = new Date(Date.now() - tzoffset).toISOString();
         return d;
+    }
+
+	function showData(){
+        var dx = document.getElementById("dataArea");
+        if (dx.style.display === "block") {
+                dx.style.display = "none";
+        } else {
+                dx.style.display = "block";
+        }
     }
         
     $(document).ready(function(){

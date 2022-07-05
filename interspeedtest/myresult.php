@@ -10,7 +10,7 @@ if(!isset($_SESSION['sUserid'])){
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
     <meta charset="UTF-8" />
-    <title>CMUnet Test result</title>
+    <title>Test result</title>
     <link rel="stylesheet" href="index.css" />
 </head>
 <style>
@@ -90,13 +90,13 @@ if(!isset($_SESSION['sUserid'])){
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT testcode, ip, timestamp, dl, ul, ping, jitter, apname FROM speedtest_users Where userid = '$userid'";
+        $sql = "SELECT testcode, ip, timestampss, dl, ul, ping, jitter, apname FROM speedtest_users Where userid = '$userid' ORDER BY timestampss DESC";
         $result = $conn->query($sql);
 
         if ($result !== false && $result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . $row["testcode"]. "</td><td>" . $row["timestamp"]. "</td><td>" . $row["ip"]. "</td><td>" . $row["apname"]. "</td><td>" . $row["dl"]. "</td><td>" . $row["ul"]. "</td><td>" . $row["ping"]. "</td><td>" . $row["jitter"]. "</td></tr>"; 
+            echo "<tr><td>" . $row["testcode"]. "</td><td>" . $row["timestampss"]. "</td><td>" . $row["ip"]. "</td><td>" . $row["apname"]. "</td><td>" . $row["dl"]. "</td><td>" . $row["ul"]. "</td><td>" . $row["ping"]. "</td><td>" . $row["jitter"]. "</td></tr>"; 
         }
         } else {
             echo "0 results";

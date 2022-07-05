@@ -64,22 +64,25 @@ $subnet = checksource($ip);
 // $testcode = $_SESSION['testcode'];
 // $timestamp = $_SESSION['testdate'];
 
-// require 'checkutilize.php';
-// $getutilize = checkutilize($ip);
-// $utilize24 = $getutilize[0];
-// $utilize5 = $getutilize[1];
-// $clientnum24 = $getutilize[2];
-// $clientnum5 = $getutilize[3];
+$apname = $_SESSION['apname'];
+$mac = $_SESSION['mac'];
+$ssid = $_SESSION['ssid'];
+$testcode = $_SESSION['testcode'];
+$timestamp = $_SESSION['testdate'];
+$utilize24 = $_SESSION['utilize24'];
+$utilize5 = $_SESSION['utilize5'];
+$clientnum24 = $_SESSION['clientnum24'];
+$clientnum5 = $_SESSION['clientnum5'];
 
 $apname = "a";
 $mac = "a";
 $ssid = "a";
-$testcode = $_SESSION['testcode'];
-$timestamp = $_SESSION['testdate'];
-$utilize24 = "a";
-$utilize5 = "a";
-$clientnum24 = "a";
-$clientnum5 = "a";
+// $testcode = $_SESSION['testcode'];
+// $timestamp = $_SESSION['testdate'];
+// $utilize24 = "a";
+// $utilize5 = "a";
+// $clientnum24 = "a";
+// $clientnum5 = "a";
 
 $id = insertSpeedtestUser($ip, $ispinfo, $extra, $ua, $lang, $dl, $ul, $ping, $jitter, $log, $userid, $subnet, $apname, $mac, $testcode, $ssid, $timestamp,$utilize24,$utilize5,$clientnum24,$clientnum5);
 if (false === $id) {

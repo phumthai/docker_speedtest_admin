@@ -27,13 +27,13 @@
         $data[] =  $row["apName"];
         $data[] =  $row["mac"];
         $data[] =  $row["ssid"];
-        $_SESSION['apname'] = $row["apName"];
-        $_SESSION['mac'] = $row["mac"];
-        $_SESSION['ssid'] = $row["ssid"];
+        // $_SESSION['apname'] = $row["apName"];
+        // $_SESSION['mac'] = $row["mac"];
+        // $_SESSION['ssid'] = $row["ssid"];
       }
       return $data;
     } else {
-      return "No AP data";
+      return "No data";
     }
     $conn->close();
   }
