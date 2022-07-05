@@ -91,7 +91,9 @@ if(!isset($_SESSION['sUserid'])){
 					$_SESSION['mac'] = 'No data';
 					$_SESSION['ssid'] = 'No data';
 				}
-				
+				// $mac = "No data";
+				// $ssid = "No data";
+				// $apname = "No data";
 				require __DIR__ . "/results/checkutilize.php";
 				$utilize = checkutilize($ip,$apname);
 				if($utilize!='No data'){
