@@ -29,6 +29,7 @@
                         <th>TestCode</th>
                         <th class="sorting" data-sorting_type="asc" data-column_name="timestamp" style="cursor: pointer">Timestamp </th>
                         <th class="sorting" data-sorting_type="asc" data-column_name="ip" style="cursor: pointer">IP </th>
+                        <th>MAC</th>
                         <th>Download</th>
                         <th>Upload</th>
                         <th>Ping</th>
@@ -37,6 +38,10 @@
                         <th class="sorting" data-sorting_type="asc" data-column_name="subnet" style="cursor: pointer">Subnet </th>
                         <th class="sorting" data-sorting_type="asc" data-column_name="apname" style="cursor: pointer">AP Name </th>
                         <th>SSID</th>
+                        <th>Utilize 2.4GHz</th>
+                        <th>Utilize 5GHz</th>
+                        <th>Client 2.4GHz</th>
+                        <th>Client 5GHz</th>
                     </tr>
                 </thead>
                 <tbody>
