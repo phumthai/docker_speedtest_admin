@@ -9,7 +9,7 @@ class PaginationController extends Controller
 {
     function index()
     {
-        $data = DB::table('speedtest_users')->orderBy('timestamp', 'desc')->paginate(10);
+        $data = DB::table('speedtest_users')->orderBy('timestampss', 'desc')->paginate(10);
         return view('graph.pagination', compact('data'));
     }
 
@@ -23,7 +23,7 @@ class PaginationController extends Controller
             $query = str_replace(" ", "%", $query);
             $data = DB::table('speedtest_users')
                 ->where('ip', 'like', '%'.$query.'%')
-                ->orWhere('timestamp', 'like', '%'.$query.'%')
+                ->orWhere('timestampss', 'like', '%'.$query.'%')
                 ->orWhere('testcode', 'like', '%'.$query.'%')
                 ->orWhere('userid', 'like', '%'.$query.'%')
                 ->orWhere('subnet', 'like', '%'.$query.'%')

@@ -2,7 +2,7 @@
 @foreach($data as $row)
 <tr>
     <td>{{ $row->testcode}}</td>
-    <td>{{ $row->timestamp}}</td>
+    <td>{{ $row->timestampss}}</td>
     <td>{{ $row->ip}}</td>
     <td>{{ $row->dl}}</td>
     <td>{{ $row->ul}}</td>
