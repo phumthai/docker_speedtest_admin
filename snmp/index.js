@@ -163,6 +163,18 @@ async function firstE(){
     }
 }
 
+async function firstF(){
+    var Controler = [
+        "10.71.0.36"
+    ]
+    for(let i=0;i<Controler.length;i++){
+        let session = snmp.createSession (Controler[i], community_key,options);
+        session.subtree (oid_apname, maxRepetitions, feedCb_apname, doneCb);
+        session.subtree (oid_utilize, maxRepetitions, feedCb_aputilize, doneCb);
+        session.subtree (oid_clientnum, maxRepetitions, feedCb_clientnum, doneCb);
+    }
+}
+
 async function second(){
     for(let i=0;i<apname.length;i++){
         let collect = [];
@@ -226,27 +238,31 @@ async function start(){
                                 setTimeout(function(){
                                     firstE().then(()=>{
                                         setTimeout(function(){
-                                            second().then(()=>{
+                                            firstF().then(()=>{
                                                 setTimeout(function(){
-                                                    insertsql().then(()=>{
+                                                    second().then(()=>{
                                                         setTimeout(function(){
-                                                            data = [];
-                                                            apname = [];
-                                                            aputilize = [];
-                                                            clientnum = [];
-                                                        },5000)
+                                                            insertsql().then(()=>{
+                                                                setTimeout(function(){
+                                                                    data = [];
+                                                                    apname = [];
+                                                                    aputilize = [];
+                                                                    clientnum = [];
+                                                                },10000)
+                                                            })
+                                                        },10000)
                                                     })
-                                                },5000)
+                                                },15000)
                                             })
-                                        },10000)
+                                        },15000)
                                     })
-                                },10000)
+                                },15000)
                             })
-                        },10000)
+                        },15000)
                     })
-                },10000)
+                },15000)
             })
-        },10000)
+        },15000)
     })
 }
 
