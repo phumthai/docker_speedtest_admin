@@ -243,6 +243,6 @@ table {
 td, th {
 border: 1px solid #000000;
 text-align: left;
-padding-left: 7px;
+padding: 7px;
 }
 
