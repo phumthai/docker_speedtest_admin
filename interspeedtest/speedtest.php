@@ -53,7 +53,7 @@ if(!isset($_SESSION['sUserid'])){
 			</div>
 		</div>
 		<div id="ipArea">
-			<span id="ip"></span>
+			<span id="ip" style="display:none"></span>
 			<?php
 				if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 					$ip = $_SERVER['HTTP_CLIENT_IP'];
@@ -65,58 +65,86 @@ if(!isset($_SESSION['sUserid'])){
 				} else {
 					$ip = $_SERVER['REMOTE_ADDR'];
 				}
-				// require __DIR__ . "/results/checkAPuse.php";
-				// $data = checkapuse($ip);
-				// echo "<p>$data[1]</p>"; // mac
-				// echo "<p>$data[0]</p>"; // ap name
-				// echo "<p>$data[2]</p>"; // ssid
 			?>
 		</div>
 
 		<div id="dataArea" style="display:none">
-			<?php
-				
-				require __DIR__ . "/results/checkAPuse.php";
-				$data = checkapuse($ip);
-				if($data!='No data'){
-					$_SESSION['apname'] = $data[0];
-					$_SESSION['mac'] = $data[1];
-					$_SESSION['ssid'] = $data[2];
-					// echo "<p>$data[1]</p>"; // mac
-					echo "<p>$data[0]</p>"; // ap name
-					echo "<p>$data[2]</p>"; // ssid
-					
-				}else{
-					$_SESSION['apname'] = 'No data';
-					$_SESSION['mac'] = 'No data';
-					$_SESSION['ssid'] = 'No data';
-				}
-				// $mac = "No data";
-				// $ssid = "No data";
-				// $apname = "No data";
-				require __DIR__ . "/results/checkutilize.php";
-				$utilize = checkutilize($ip,$apname);
-				if($utilize!='No data'){
-					$_SESSION['utilize24'] = $utilize[0];
-					$_SESSION['utilize5'] = $utilize[1];
-					$_SESSION['clientnum24'] = $utilize[2];
-					$_SESSION['clientnum5'] = $utilize[3];
-					if($ssid=='@JumboPlus5GHz'){
-						echo "<p>Utilize: ".$utilize[1]."</p>";
-						echo "<p>Client count: ".$utilize[3]."</p>";
-					}else{
-						echo "<p>Utilize: ".$utilize[0]."</p>";
-						echo "<p>Client count: ".$utilize[2]."</p>";
-					}
-				}else{
-					$_SESSION['utilize24'] = 'No data';
-					$_SESSION['utilize5'] ='No data';
-					$_SESSION['clientnum24'] ='No data';
-					$_SESSION['clientnum5'] ='No data';
-				}
-			?>
+			<table>
+					<?php
+						echo "<tr>";
+						echo "<td style=\"background-color:#d4d4d4\">IP</td>";
+						echo "<td><p>$ip</p></td>";
+						echo "</tr>";
+						// require __DIR__ . "/results/checkAPuse.php";
+						// $data = checkapuse($ip);
+						
+						$data[] = "CMU_COM_CNOC_AP5710";
+						$data[] = "123";
+						$data[] = "abc";
+						// $data = "No data";
+						if($data!='No data'){
+							$_SESSION['apname'] = $data[0]; // ap name
+							$_SESSION['mac'] = $data[1];  // mac
+							$_SESSION['ssid'] = $data[2]; // ssid
+							$apname = $data[0];
+							$ssid = $data[1];
+							$mac = $data[2];
+							echo "<tr>";
+							echo "<td style=\"background-color:#d4d4d4\">AP name</td>";
+							echo "<td><p>$data[0]</p></td>"; // ap name
+							echo "</tr><tr>";
+							echo "<td style=\"background-color:#d4d4d4\">SSID</td>";
+							echo "<td><p>$data[2]</p></td>"; // ssid
+							echo "</tr>";
+						}else{
+							$_SESSION['apname'] = 'No data';
+							$_SESSION['mac'] = 'No data';
+							$_SESSION['ssid'] = 'No data';
+							$apname = 'No data';
+							$ssid = 'No data';
+							$mac = 'No data';
+						}
+						if($ssid!="No data"){
+							require __DIR__ . "/results/checkutilize.php";
+							$utilize = checkutilize($ip,$apname);
+							if($utilize!='No data'){
+								$_SESSION['utilize24'] = $utilize[0];
+								$_SESSION['utilize5'] = $utilize[1];
+								$_SESSION['clientnum24'] = $utilize[2];
+								$_SESSION['clientnum5'] = $utilize[3];
+								if($ssid=='@JumboPlus5GHz'){
+									echo "<tr>";
+									echo "<td style=\"background-color:#d4d4d4\">AP Client</td>";
+									echo "<td><p>".$utilize[3]."</p></td>";
+									echo "</tr><tr>";
+									echo "<td style=\"background-color:#d4d4d4\">Channel Utilize (%)</td>";
+									echo "<td>".$utilize[1]."</td>";
+									echo "</tr>";
+								}else{
+									echo "<tr>";
+									echo "<td style=\"background-color:#d4d4d4\">AP Client</td>";
+									echo "<td><p>".$utilize[2]."</p></td>";
+									echo "</tr><tr>";
+									echo "<td style=\"background-color:#d4d4d4\">Channel Utilize (%)</td>";
+									echo "<td><p>".$utilize[0]."</p></td>";
+									echo "</tr>";
+								}
+							}else{
+								$_SESSION['utilize24'] = 'No data';
+								$_SESSION['utilize5'] ='No data';
+								$_SESSION['clientnum24'] ='No data';
+								$_SESSION['clientnum5'] ='No data';
+							}
+						}
+					?>
+			
+					<td style="background-color:#d4d4d4">Date</td>
+					<td><p id="testcode"></p></td>
+				</tr>
+			</table>
+			
         </div>
-		<p id="testcode"></p>
+		
 		<div id="shareArea" style="display:none"></div>
 		<?php
 			// $accessToken = $_SESSION['accessToken'];

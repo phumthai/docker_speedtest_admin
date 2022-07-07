@@ -74,9 +74,9 @@ $utilize5 = $_SESSION['utilize5'];
 $clientnum24 = $_SESSION['clientnum24'];
 $clientnum5 = $_SESSION['clientnum5'];
 
-$apname = "a";
-$mac = "a";
-$ssid = "a";
+// $apname = "a";
+// $mac = "a";
+// $ssid = "a";
 // $testcode = $_SESSION['testcode'];
 // $timestamp = $_SESSION['testdate'];
 // $utilize24 = "a";
