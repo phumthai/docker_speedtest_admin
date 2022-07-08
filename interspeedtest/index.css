@@ -24,10 +24,12 @@ body{
     box-sizing:border-box;
     width:100%;
     max-width:40em;
-    margin:4em auto;
+    margin: auto;
     box-shadow:0 1em 6em #00000080;
-    padding:1em 1em 4em 1em;
+    padding:1em 1em 1em 1em;
     border-radius:0.4em;
+    height:device-height;
+    position:relative;
 }
 h1{
     color:#020202;
@@ -246,3 +248,7 @@ text-align: left;
 padding: 7px;
 }
 
+p {
+    margin-top: 0.6em;
+    margin-bottom: 0em;
+}
